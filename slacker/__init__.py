@@ -495,7 +495,10 @@ class Chat(BaseAPI):
         if attachments:
             if isinstance(attachments, list):
                 attachments = json.dumps(attachments)
-
+        # Ensure blocks are json encoded
+        if blocks:
+            if isinstance(blocks, list):
+                blocks = json.dumps(blocks)
         return self.post('chat.postMessage',
                          data={
                              'channel': channel,
@@ -532,6 +535,9 @@ class Chat(BaseAPI):
         # Ensure attachments are json encoded
         if attachments is not None and isinstance(attachments, list):
             attachments = json.dumps(attachments)
+        # Ensure blocks are json encoded
+        if blocks is not None and isinstance(blocks, list):
+            blocks = json.dumps(blocks)
         return self.post('chat.update',
                          data={
                              'channel': channel,
@@ -558,6 +564,9 @@ class Chat(BaseAPI):
         # Ensure attachments are json encoded
         if attachments is not None and isinstance(attachments, list):
             attachments = json.dumps(attachments)
+        # Ensure blocks are json encoded
+        if blocks is not None and isinstance(blocks, list):
+            blocks = json.dumps(blocks)
         return self.post('chat.postEphemeral',
                          data={
                              'channel': channel,
